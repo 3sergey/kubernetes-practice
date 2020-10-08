@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test3
+  namespace: test3
+spec:
+  selector:
+    matchLabels:
+      app: test3
+  template:
+    metadata:
+      labels:
+        app: test3
+    spec:
+      containers:
+      - name: test3
+        image: nginx:latest
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "echo 'you are checking domain test3.mykubernetes.guru' > /usr/share/nginx/html/index.html"]

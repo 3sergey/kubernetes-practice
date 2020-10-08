@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test3-ingress
+  namespace: test3
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: test3.mykubernetes.guru
+    http:
+      paths:
+      - backend:
+          serviceName: test3-service
+          servicePort: 80
+        path: /
