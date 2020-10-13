@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  annotations:
+  generation: 1
+  name: letsencrypt-practice
+spec:
+  acme:
+    email: sysadmin@linuxtrainigcenter.com
+    privateKeySecretRef:
+      name: letsencrypt-practice
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

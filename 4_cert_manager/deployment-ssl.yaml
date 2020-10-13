@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssl-test-deployment
+  namespace: ssl-test
+spec:
+  selector:
+    matchLabels:
+      app: ssl-test-deployment
+  template:
+    metadata:
+      labels:
+        app: ssl-test-deployment
+    spec:
+      containers:
+      - name: ssl-test-deployment
+        image: nginx:latest
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "echo 'you are checking domain ssl-test.mykubernetes.guru' > /usr/share/nginx/html/index.html"]

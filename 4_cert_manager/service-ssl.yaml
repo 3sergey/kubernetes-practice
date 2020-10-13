@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssl-test-service
+  namespace: ssl-test
+  labels:
+    app: ssl-test-deployment
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+  selector:
+    app: ssl-test-deployment

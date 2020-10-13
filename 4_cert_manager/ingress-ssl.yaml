@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ssl-test
+  namespace: ssl-test
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    # old certmanager integration
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-practice"
+    # new certmanager integration
+    cert-manager.io/cluster-issuer: "letsencrypt-practice"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+spec:
+  tls:
+    - hosts: 
+      - ssl-test.mykubernetes.guru
+      secretName: ssl-letsencrypt
+  rules:
+  - host: 'ssl-test.mykubernetes.guru'
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ssl-test-service
+          servicePort: 80
+  - host: 'ssl-test.mykubernetes.guru'
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ssl-test-service
+          servicePort: 443
