@@ -25,10 +25,3 @@ spec:
         backend:
           serviceName: ssl-test-service
           servicePort: 80
-  # - host: 'ssl-test.mykubernetes.guru'
-  #   https:
-  #     paths:
-  #     - path: /
-  #       backend:
-  #         serviceName: ssl-test-service
-  #         servicePort: 80
