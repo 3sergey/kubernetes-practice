@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: persistent-disk-test-service
+  namespace: persistent-disk-test
+  labels:
+    app: persistent-disk-test-deployment
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+  selector:
+    app: persistent-disk-test-deployment

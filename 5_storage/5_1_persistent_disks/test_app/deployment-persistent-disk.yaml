@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: persistent-disk-test-deployment
+  namespace: persistent-disk-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: persistent-disk-test-deployment
+  template:
+    metadata:
+      labels:
+        app: persistent-disk-test-deployment
+    spec:
+      containers:
+      - name: persistent-disk-test-deployment
+        image: nginx:latest
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "echo 'you are checking domain persistent-disk-test.mykubernetes.guru' > /usr/share/nginx/html/index.html"]
+        volumeMounts:
+        - mountPath: "/mnt/test-pvc"
+          name: my-simple-pvc
+      volumes:
+        - name: my-simple-pvc
+          persistentVolumeClaim:
+            claimName: test-pvc

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: persistent-disk-test
+  namespace: persistent-disk-test
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    # old certmanager integration
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-practice"
+    # new certmanager integration
+    cert-manager.io/cluster-issuer: "letsencrypt-practice"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+spec:
+  tls:
+    - hosts: 
+      - persistent-disk-test.mykubernetes.guru
+      secretName: ssl-letsencrypt
+  rules:
+  - host: 'persistent-disk-test.mykubernetes.guru'
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: persistent-disk-test-service
+          servicePort: 80
