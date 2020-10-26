@@ -1,0 +1,10 @@
+# install nfs server
+apt install nfs-kernel-server
+
+# add share
+vim /etc/exports
+/mnt/nfs_k8s  35.239.63.15(rw,sync,no_subtree_check) 34.69.46.51(rw,sync,no_subtree_check)
+/mnt/nfs2 35.239.63.15(rw,sync,no_subtree_check) 34.69.46.51(rw,sync,no_subtree_check)
+
+#restart
+systemctl restart nfs-kernel-server

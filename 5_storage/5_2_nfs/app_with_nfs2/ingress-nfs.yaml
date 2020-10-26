@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nfs-test-ingress2
+  namespace: nfs-test
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    # old certmanager integration
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-practice"
+    # new certmanager integration
+    cert-manager.io/cluster-issuer: "letsencrypt-practice"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+spec:
+  tls:
+    - hosts: 
+      - nfs-test2.mykubernetes.guru
+      secretName: nfs-test-secret2
+  rules:
+  - host: 'nfs-test2.mykubernetes.guru'
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nfs-test-service2
+          servicePort: 80
