@@ -1,8 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nfs-test-ingress
-  namespace: nfs-test
+  name: test-nfs-ingress
+  namespace: test-nfs
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
@@ -15,13 +15,13 @@ metadata:
 spec:
   tls:
     - hosts: 
-      - nfs-test.mykubernetes.guru
-      secretName: nfs-test-secret
+      - test-nfs.mykubernetes.guru
+      secretName: test-nfs-secret
   rules:
-  - host: 'nfs-test.mykubernetes.guru'
+  - host: 'test-nfs.mykubernetes.guru'
     http:
       paths:
       - path: /
         backend:
-          serviceName: nfs-test-service
+          serviceName: test-nfs-service
           servicePort: 80

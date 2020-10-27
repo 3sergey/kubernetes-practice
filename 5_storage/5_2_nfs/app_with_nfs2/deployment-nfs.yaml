@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nfs-test-deployment2
-  namespace: nfs-test
+  name: test-nfs-deployment2
+  namespace: test-nfs
 spec:
   replicas: 10
   selector:
     matchLabels:
-      app: nfs-test-deployment2
+      app: test-nfs-deployment2
   template:
     metadata:
       labels:
-        app: nfs-test-deployment2
+        app: test-nfs-deployment2
     spec:
       containers:
-      - name: nfs-test-deployment2
+      - name: test-nfs-deployment2
         image: nginx:latest
         imagePullPolicy: Always
         lifecycle:

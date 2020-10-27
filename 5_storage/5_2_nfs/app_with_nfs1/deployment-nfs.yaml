@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nfs-test-deployment
-  namespace: nfs-test
+  name: test-nfs-deployment
+  namespace: test-nfs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nfs-test-deployment
+      app: test-nfs-deployment
   template:
     metadata:
       labels:
-        app: nfs-test-deployment
+        app: test-nfs-deployment
     spec:
       containers:
-      - name: nfs-test-deployment
+      - name: test-nfs-deployment
         image: nginx:latest
         imagePullPolicy: Always
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/bash", "-c", "echo 'mounted nfs path is /mnt/nfs-test ' > /usr/share/nginx/html/index.html"]
+              command: ["/bin/bash", "-c", "echo 'mounted nfs path is /mnt/test-nfs ' > /usr/share/nginx/html/index.html"]
         volumeMounts:
-        - mountPath: "/mnt/nfs-test"
+        - mountPath: "/mnt/test-nfs"
           name: nfs-pvc-test
       volumes:
         - name: nfs-pvc-test

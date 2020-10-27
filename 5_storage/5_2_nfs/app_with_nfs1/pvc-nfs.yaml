@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc
-  namespace: nfs-test
+  namespace: test-nfs
 spec:
   storageClassName: nfs
   accessModes:
