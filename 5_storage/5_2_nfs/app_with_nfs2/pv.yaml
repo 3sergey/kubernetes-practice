@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv2
+  name: nfs-pv22
   namespace: test-nfs
 spec:
   capacity:
