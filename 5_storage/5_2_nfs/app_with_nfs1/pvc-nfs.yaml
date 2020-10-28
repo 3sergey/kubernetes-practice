@@ -10,5 +10,5 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  volumeName: nfs-pv1
+  volumeName: pv1-nfs
   
