@@ -1,0 +1,22 @@
+original repo:
+https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+
+### on NFS server
+vim /etc/exports
+/mnt/dynamic 35.239.63.15(rw,no_root_squash,sync,no_subtree_check) 34.69.46.51(rw,no_root_squash,sync,no_subtree_check)
+
+systemctl restart nfs-kernel-server
+
+
+#### configure dynamic provisioner
+kubectl create ns dynamic-nfs-test
+
+# add NFS server IP
+vim 5_storage/5_3_dynamic_nfs_provision/dynamic_provisioner/deployment.yaml
+...
+            - name: NFS_SERVER
+              value: 1.1.1.1
+...
+          nfs:
+            server: 1.1.1.1
+

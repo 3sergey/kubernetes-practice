@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-nfs-deployment2
+  namespace: dynamic-nfs-test
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: test-nfs-deployment2
+  template:
+    metadata:
+      labels:
+        app: test-nfs-deployment2
+    spec:
+      containers:
+      - name: test-nfs-deployment2
+        image: nginx:latest
+        imagePullPolicy: Always
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "echo 'mounted nfs path is /mnt/nfs2 ' > /usr/share/nginx/html/index.html"]
+        volumeMounts:
+          - name: nfs-pvc
+            mountPath: "/mnt"
+      volumes:
+        - name: nfs-pvc
+          persistentVolumeClaim:
+            claimName: test-claim2
