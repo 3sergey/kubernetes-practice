@@ -8,10 +8,11 @@ vim /etc/exports
 systemctl restart nfs-kernel-server
 
 
-#### configure dynamic provisioner
-kubectl create ns dynamic-nfs-test
 
-# add NFS server IP
+#### configure dynamic provisioner
+kubectl create ns nfs-dynamic-provisioner
+
+- add NFS server IP
 vim 5_storage/5_3_dynamic_nfs_provision/dynamic_provisioner/deployment.yaml
 ...
             - name: NFS_SERVER
@@ -19,4 +20,8 @@ vim 5_storage/5_3_dynamic_nfs_provision/dynamic_provisioner/deployment.yaml
 ...
           nfs:
             server: 1.1.1.1
+
+
+#### test dynamic nfs dynamic provisioner 
+kubectl create ns dynamic-nfs-test
 
