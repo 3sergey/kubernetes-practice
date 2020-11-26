@@ -1,0 +1,6 @@
+
+while true ; do curl -I https://rollout-update.mykubernetes.guru ;sleep 1;  done
+
+while true ; do kubectl get po -n rollout-update;sleep 1;  done
+
+while true ; do echo '==============' ; echo "Number of Running pods is $(kubectl get po -n rollout-update| grep Running | wc -l) "; echo "Number of Terminating pods is $(kubectl get po -n rollout-update| grep Terminating | wc -l) "; echo "Number of pods that are in Creating state  is $(kubectl get po -n rollout-update| grep Creating | wc -l) "; echo '==============' ; sleep 1; done
