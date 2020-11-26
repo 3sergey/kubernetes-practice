@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rollout-deployment
-  namespace: rollout-update
+  name: rolling-deployment
+  namespace: rolling-update
 spec:
   replicas: 1
   # strategy:
@@ -12,18 +12,18 @@ spec:
     # type: RollingUpdate
   selector:
     matchLabels:
-      app: rollout-deployment
+      app: rolling-deployment
   template:
     metadata:
       labels:
-        app: rollout-deployment
+        app: rolling-deployment
     spec:
       containers:
-      - name: rollout-deployment
+      - name: rolling-deployment
         # image: nginx:latest
         image: nginx:1.19
         imagePullPolicy: Always
         lifecycle:
           postStart:
             exec:
-              command: [ "/bin/bash", "-c", "sleep 30 && echo 'you are checking domain rollout-update.mykubernetes.guru' > /usr/share/nginx/html/index.html"]
+              command: [ "/bin/bash", "-c", "sleep 30 && echo 'you are checking domain rolling-update.mykubernetes.guru' > /usr/share/nginx/html/index.html"]
