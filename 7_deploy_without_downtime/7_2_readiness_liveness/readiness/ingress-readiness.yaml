@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: readiness-ingress
-  namespace: readiness-ns
+  namespace: readiness-namespace
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
@@ -15,10 +15,10 @@ metadata:
 spec:
   tls:
     - hosts: 
-      - readiness-service.mykubernetes.guru
+      - readiness-test.mykubernetes.guru
       secretName: ssl-letsencrypt
   rules:
-  - host: 'readiness-service.mykubernetes.guru'
+  - host: 'readiness-test.mykubernetes.guru'
     http:
       paths:
       - path: /

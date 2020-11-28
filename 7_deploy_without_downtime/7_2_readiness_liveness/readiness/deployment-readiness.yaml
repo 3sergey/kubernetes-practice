@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: readiness-deployment
-  namespace: readiness-ns
+  namespace: readiness-namespace
 spec:
   replicas: 1
   selector:
@@ -15,16 +15,12 @@ spec:
     spec:
       containers:
       - name: readiness-deployment
-        # image: nginx:latest
-        image: nginx:1.19
+        # image: kubernetespractice/kubernetes-practice:delay-60
+        image: nginx:latest
         imagePullPolicy: Always
-        lifecycle:
-          postStart:
-            exec:
-              command: [ "/bin/bash", "-c", "echo 'you are checking domain readiness-ns.mykubernetes.guru' > /usr/share/nginx/html/healthz"]
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 80
-          initialDelaySeconds: 10
-          periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        #   initialDelaySeconds: 10
+        #   periodSeconds: 10
