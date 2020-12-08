@@ -1,11 +1,21 @@
 kubectl create ns readiness-namespace
 kubectl create ns liveness-namespace
 
-kubectl get po -n readiness-namespace -w
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/liveness/deployment-liveness.yaml
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/liveness/ingress-liveness.yaml
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/liveness/service-liveness.yaml
 
+
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/readiness/deployment-readiness.yaml
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/readiness/ingress-readiness.yaml
+kubectl apply -f 7_deploy_without_downtime/7_2_readiness_liveness/readiness/service-readiness.yaml
+
+
+kubectl get po -n readiness-namespace -w
 while true ; do date; curl -I -s --max-time 3 https://readiness-test.mykubernetes.guru | grep HTTP ; sleep 1;  done
 
 
 kubectl get po -n liveness-namespace -w
+kubectl logs -f  liveness-deployment -n liveness-namespace -w
 
 rm /usr/share/nginx/html/healthz
