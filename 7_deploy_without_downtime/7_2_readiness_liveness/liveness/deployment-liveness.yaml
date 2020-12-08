@@ -19,15 +19,16 @@ spec:
         # image: kubernetespractice/kubernetes-practice:delay-5
         image: nginx:latest
         imagePullPolicy: Always
-        # livenessProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 80
-        #   failureThreshold: 3
-        #   periodSeconds: 5
         # startupProbe:
         #   httpGet:
         #     path: /healthz
         #     port: 80
         #   failureThreshold: 5
         #   periodSeconds: 10
+        # livenessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        #   failureThreshold: 3
+        #   periodSeconds: 5
+
