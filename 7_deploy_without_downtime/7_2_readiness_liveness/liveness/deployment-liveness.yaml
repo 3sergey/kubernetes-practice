@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: liveness-deployment
-        image: kubernetespractice/kubernetes-practice:delay-5
-        # image: nginx:latest
+        # image: kubernetespractice/kubernetes-practice:delay-60
+        image: nginx:latest
         imagePullPolicy: Always
         # livenessProbe:
         #   httpGet:
@@ -29,4 +29,4 @@ spec:
         #     path: /healthz
         #     port: 80
         #   failureThreshold: 5
-        #   periodSeconds: 5
+        #   periodSeconds: 10
