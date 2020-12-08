@@ -16,6 +16,6 @@ while true ; do date; curl -I -s --max-time 3 https://readiness-test.mykubernete
 
 
 kubectl get po -n liveness-namespace -w
-kubectl logs -f  liveness-deployment -n liveness-namespace -w
+
 
 rm /usr/share/nginx/html/healthz

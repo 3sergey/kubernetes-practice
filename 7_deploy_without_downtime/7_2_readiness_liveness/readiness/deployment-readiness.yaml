@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
       - name: readiness-deployment
-        # image: kubernetespractice/kubernetes-practice:delay-60
-        image: nginx:latest
-        imagePullPolicy: Always
-        # readinessProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 80
-        #   initialDelaySeconds: 10
-        #   periodSeconds: 10
+        image: kubernetespractice/kubernetes-practice:delay-60
+        # image: nginx:latest
+        # imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10

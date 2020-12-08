@@ -4,7 +4,7 @@ metadata:
   name: liveness-deployment
   namespace: liveness-namespace
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: liveness-deployment
@@ -15,16 +15,9 @@ spec:
     spec:
       containers:
       - name: liveness-deployment
-        # image: kubernetespractice/kubernetes-practice:delay-60
         # image: kubernetespractice/kubernetes-practice:delay-5
         image: nginx:latest
         imagePullPolicy: Always
-        # startupProbe:
-        #   httpGet:
-        #     path: /healthz
-        #     port: 80
-        #   failureThreshold: 5
-        #   periodSeconds: 10
         # livenessProbe:
         #   httpGet:
         #     path: /healthz
