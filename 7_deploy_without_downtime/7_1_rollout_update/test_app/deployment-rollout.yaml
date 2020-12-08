@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: rolling-deployment
-        # image: nginx:latest
-        image: nginx:1.19
+        image: nginx:latest
+        # image: nginx:1.19
         imagePullPolicy: Always
         lifecycle:
           postStart:

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: readiness-deployment
-        # image: kubernetespractice/kubernetes-practice:delay-60
-        image: nginx:latest
+        image: kubernetespractice/kubernetes-practice:delay-60
+        # image: nginx:latest
         imagePullPolicy: Always
         # readinessProbe:
         #   httpGet:

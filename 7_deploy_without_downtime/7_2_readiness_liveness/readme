@@ -1,3 +1,11 @@
+kubectl create ns readiness-namespace
+kubectl create ns liveness-namespace
+
 kubectl get po -n readiness-namespace -w
 
 while true ; do date; curl -I -s --max-time 3 https://readiness-test.mykubernetes.guru | grep HTTP ; sleep 1;  done
+
+
+kubectl get po -n liveness-namespace -w
+
+rm /usr/share/nginx/html/healthz
