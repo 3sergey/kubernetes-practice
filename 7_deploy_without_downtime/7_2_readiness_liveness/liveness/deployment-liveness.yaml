@@ -16,6 +16,7 @@ spec:
       containers:
       - name: liveness-deployment
         # image: kubernetespractice/kubernetes-practice:delay-60
+        # image: kubernetespractice/kubernetes-practice:delay-5
         image: nginx:latest
         imagePullPolicy: Always
         # livenessProbe:
