@@ -1,0 +1,12 @@
+kubectl create ns autoscaling-namespace
+
+kubectl apply -f 8_autoscaling/test_app/deployment-autoscaling.yaml
+kubectl apply -f 8_autoscaling/test_app/service-autoscaling.yaml
+kubectl apply -f 8_autoscaling/test_app/ingress-autoscaling.yaml
+
+kubectl top po -n autoscaling-namespace
+
+
+kubectl apply -f 8_autoscaling/test_app/hpa-autoscaling.yaml
+
+dd if=/dev/zero of=/dev/mem bs=100M

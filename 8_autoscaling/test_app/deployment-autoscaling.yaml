@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoscaling-deployment
+  namespace: autoscaling-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoscaling-deployment
+  template:
+    metadata:
+      labels:
+        app: autoscaling-deployment
+    spec:
+      containers:
+      - name: autoscaling-deployment
+        image: nginx:latest
+        imagePullPolicy: Always
+        # resources:
+        #   requests:
+        #     memory: 100M
+        #     cpu: 100m
+        #   limits:
+        #     memory: 200M
+        #     cpu: 200m
+        lifecycle:
+          postStart:
+            exec:
+              command: [ "/bin/bash", "-c", "echo 'you are checking domain autoscaling.mykubernetes.guru' > /usr/share/nginx/html/index.html"]
