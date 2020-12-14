@@ -2,11 +2,21 @@ kubectl create ns autoscaling-namespace
 
 kubectl apply -f 8_autoscaling/test_app/deployment-autoscaling.yaml
 kubectl apply -f 8_autoscaling/test_app/service-autoscaling.yaml
-kubectl apply -f 8_autoscaling/test_app/ingress-autoscaling.yaml
 
-kubectl top po -n autoscaling-namespace
+
+kubectl top nodes 
+while true ; do kubectl top po -n autoscaling-namespace; sleep 1; done 
+kubectl describe nodes | grep  autoscaling-namespace
 
 
 kubectl apply -f 8_autoscaling/test_app/hpa-autoscaling.yaml
+kubectl exec -it   bash -n autoscaling-namespace
 
-dd if=/dev/zero of=/dev/mem bs=100M
+while true; do echo trololo; done
+
+kubectl get events -n autoscaling-namespace
+
+while true ; do  kubectl get po -n autoscaling-namespace ; sleep 2 ; done 
+while true ; do  kubectl get po nodes ; sleep 5 ; done 
+
+kubectl top po -n autoscaling-namespace
