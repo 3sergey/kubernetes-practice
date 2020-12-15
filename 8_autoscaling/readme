@@ -1,3 +1,5 @@
+https://blog.scaleway.com/understanding-kubernetes-autoscaling/
+
 kubectl create ns autoscaling-namespace
 
 kubectl apply -f 8_autoscaling/test_app/deployment-autoscaling.yaml
